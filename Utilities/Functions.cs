@@ -29,6 +29,12 @@ namespace Binjector.Utilities
             return (float)Math.Round(Vector3.Distance(ESPUtil.mainCamera.transform.position, endpos));
         }
 
+        public static bool InCameraView(Vector3 pos, out RaycastHit result)
+        {
+            Vector3 dir = (pos - MainCamera.instance.transform.position).normalized;
+            return Physics.Raycast(MainCamera.instance.transform.position, dir, out result, Mathf.Infinity, RayMasks.DAMAGE_CLIENT);
+        }
+
         public static SteamPlayer GetPlayerFromSteamID(CSteamID steamid)
         {
             foreach (var user in Provider.clients)

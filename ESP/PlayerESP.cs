@@ -53,11 +53,20 @@ namespace Binjector.ESP
                             if (pos.z >= 0)
                             {
                                 string labelText = "";
+                                Color color = Color.red;
                                 float playerD = Functions.GetDistance(ESPUtil.players[i].player.transform.position);
                                 if (playerD < MenuGUI.instance.playerEspMaxDistance)
                                 {
                                     if (Functions.IsVisable(ESPUtil.players[i].player.transform))
                                     {
+                                        if (MenuGUI.instance.playerVisabilityChecks)
+                                        {
+                                            Functions.InCameraView(Functions.GetLimbPosition(ESPUtil.players[i].player.transform, "Skull"), out RaycastHit hit);
+                                            if (DamageTool.getPlayer(hit.transform))
+                                            {
+                                                color = new Color32(255, 174, 25, 255);
+                                            }
+                                        }
                                         if (MenuGUI.instance.playerDistance) { labelText += "<color=#F8F8FF>[</color>" + playerD.ToString() + "<color=#F8F8FF>] </color>"; }
                                         if (MenuGUI.instance.playerName) { labelText += ESPUtil.players[i].playerID.characterName; }
                                         if (MenuGUI.instance.playerWeapon)
@@ -72,17 +81,17 @@ namespace Binjector.ESP
                                             }
                                         }
 
-                                        Functions.DrawLabel(labelText, Functions.isFriend(ESPUtil.players[i].playerID.steamID.ToString()) ? MenuGUI.instance.friendLabelColor : MenuGUI.instance.playerLabelColor, pos);
+                                        Functions.DrawLabel(labelText, Functions.isFriend(ESPUtil.players[i].playerID.steamID.ToString()) ? MenuGUI.instance.friendLabelColor : color, pos);
 
                                         if (MenuGUI.instance.player3DBoxes && Functions.IsVisable(ESPUtil.players[i].player.transform))
                                         {
-                                            Functions.Draw3DBox(new Bounds(ESPUtil.players[i].player.transform.position + new Vector3(0, 1.1f, 0), ESPUtil.players[i].player.transform.localScale + new Vector3(0, .95f, 0)), Functions.isFriend(ESPUtil.players[i].playerID.steamID.ToString()) ? MenuGUI.instance.friend3DBoxColor : MenuGUI.instance.player3DBoxColor);
+                                            Functions.Draw3DBox(new Bounds(ESPUtil.players[i].player.transform.position + new Vector3(0, 1.1f, 0), ESPUtil.players[i].player.transform.localScale + new Vector3(0, .95f, 0)), Functions.isFriend(ESPUtil.players[i].playerID.steamID.ToString()) ? MenuGUI.instance.friend3DBoxColor : color);
                                         }
                                     }
 
                                     if (MenuGUI.instance.playerLines)
                                     {
-                                        Functions.DrawTracer(pos, Functions.isFriend(ESPUtil.players[i].playerID.steamID.ToString()) ? MenuGUI.instance.friendTracerColor : MenuGUI.instance.playerTracerColor);
+                                        Functions.DrawTracer(pos, Functions.isFriend(ESPUtil.players[i].playerID.steamID.ToString()) ? MenuGUI.instance.friendTracerColor : color);
                                     }
                                 }
                             }

@@ -54,6 +54,7 @@ namespace Binjector.Utilities
         public bool changeColorIfVisable = true;
         public bool playerLines = false;
         public bool playerDistance = false;
+        public bool playerVisabilityChecks = false;
         public float playerEspMaxDistance = 1500;
         public bool zombieEspEnabled = false;
         public bool zombieEsp = false;
@@ -195,6 +196,7 @@ namespace Binjector.Utilities
         public float launchAmount = 0f;
         public bool lockPlayers = true;
         public bool silentAim = false;
+        public bool randomLimb = false;
 
         //Vehicles
         public bool customengine = false;
@@ -474,6 +476,7 @@ namespace Binjector.Utilities
                 playerName = GUILayout.Toggle(playerName, "Player Name");
                 playerWeapon = GUILayout.Toggle(playerWeapon, "Player Weapon");
                 playerDistance = GUILayout.Toggle(playerDistance, "Player Distance");
+                playerVisabilityChecks = GUILayout.Toggle(playerVisabilityChecks, "Visability Checks");
                 GUILayout.Label("Player ESP Range: " + playerEspMaxDistance);
                 playerEspMaxDistance = (float)Math.Round(GUILayout.HorizontalSlider(playerEspMaxDistance, 0f, 2000f));
             }
@@ -876,6 +879,7 @@ namespace Binjector.Utilities
             silentAim = GUILayout.Toggle(silentAim, "Silent Aim");
             if (silentAim)
             {
+                randomLimb = GUILayout.Toggle(randomLimb, "Random Limb");
                 GUILayout.Label("<size=10>For some reason, silent aim is more effective when shooting at the ground</size>");
             }
             launchAmount = (float)Math.Round(GUILayout.HorizontalSlider(launchAmount, 0, 30));

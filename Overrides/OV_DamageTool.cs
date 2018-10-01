@@ -45,9 +45,16 @@ namespace Binjector.Overrides
                 else
                 {
                     raycastInfo.point = Functions.GetLimbPosition(Functions.GetNearestPlayer().transform, "Skull");
-
                 }
-                raycastInfo.limb = ELimb.SKULL;
+                if (MenuGUI.instance.randomLimb)
+                {
+                    ELimb[] array = (ELimb[])Enum.GetValues(typeof(ELimb));
+                    raycastInfo.limb = array[Random.Next(0, array.Length)];
+                }
+                else
+                {
+                    raycastInfo.limb = ELimb.SKULL;
+                }
                 raycastInfo.player = Functions.GetNearestPlayer();
             }
             else
@@ -73,5 +80,7 @@ namespace Binjector.Overrides
             }
             return raycastInfo;
         }
+
+        public static System.Random Random;
     }
 }

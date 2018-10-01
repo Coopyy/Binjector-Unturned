@@ -16,7 +16,7 @@ namespace Binjector.Utilities
         {
             if(File.Exists("../../config.json"))
             {
-                string file = System.IO.File.ReadAllText("binjector.json");
+                string file = File.ReadAllText("binjector.json");
                 //MenuGUI m = JsonConvert.DeserializeObject<MenuGUI>(file);
             }
         }
