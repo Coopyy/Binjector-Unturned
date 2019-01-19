@@ -63,6 +63,7 @@
     <Compile Include="ESP\ZombieESP.cs" />
     <Compile Include="Overrides\OV_DamageTool.cs" />
     <Compile Include="Overrides\OV_LevelLighting.cs" />
+    <Compile Include="Overrides\OV_PlayerInteract.cs" />
     <Compile Include="Overrides\OV_Provider.cs" />
     <Compile Include="Overrides\OV_Player.cs" />
     <Compile Include="Overrides\OV_PlayerPauseUI.cs" />
