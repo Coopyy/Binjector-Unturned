@@ -46,6 +46,9 @@
         <e p="OverrideManager.cs" t="Include" />
         <e p="RedirectionHelper.cs" t="Include" />
       </e>
+      <e p="Variables" t="Include">
+        <e p="ReflectionVariables.cs" t="Include" />
+      </e>
     </e>
   </component>
 </project>
