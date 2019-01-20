@@ -138,10 +138,10 @@ namespace Binjector.Utilities
             return true;
         }
 
-        public static void OverrideMethod(Type defaultClass, Type overrideClass, string method, BindingFlags bindingflag, BindingFlags bindingflag1)
+        public static void OverrideMethod(Type defaultClass, Type overrideClass, string method, BindingFlags bindingflag)
         {
             string overriddenmethod = "OV_" + method;
-            RedirectionHelper.RedirectCalls(defaultClass.GetMethod(method, bindingflag | bindingflag1), overrideClass.GetMethod(overriddenmethod, BindingFlags.Static | BindingFlags.Public));
+            RedirectionHelper.RedirectCalls(defaultClass.GetMethod(method, bindingflag), overrideClass.GetMethod(overriddenmethod, BindingFlags.Static | BindingFlags.Public));
         }
 
         public static Vector3 GetLimbPosition(Transform target, string objName)
