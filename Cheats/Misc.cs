@@ -10,6 +10,7 @@ using UnityEngine;
 using Binjector.Other;
 using System.Collections;
 using Binjector.Overrides;
+using Binjector.Variables;
 
 namespace Binjector.Cheats
 {
@@ -24,9 +25,9 @@ namespace Binjector.Cheats
         void Start()
         {
             OV_DamageTool.Random = new System.Random();
-            LevelTime = typeof(LevelLighting).GetField("_time", BindingFlags.Static | BindingFlags.NonPublic);
-            LevelRainyness = typeof(LevelLighting).GetField("rainyness", BindingFlags.Static | BindingFlags.NonPublic);
-            LevelSnowyness = typeof(LevelLighting).GetField("snowyness", BindingFlags.Static | BindingFlags.NonPublic);
+            LevelTime = typeof(LevelLighting).GetField("_time", ReflectionVariables.PrivateStatic);
+            LevelRainyness = typeof(LevelLighting).GetField("rainyness", ReflectionVariables.PrivateStatic);
+            LevelSnowyness = typeof(LevelLighting).GetField("snowyness", ReflectionVariables.PrivateStatic);
         }
 
         public void Update()
