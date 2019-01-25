@@ -41,7 +41,6 @@
       </e>
       <e p="Utilities" t="Include">
         <e p="Configuration.cs" t="Include" />
-        <e p="Debug.cs" t="Include" />
         <e p="ESPUtil.cs" t="Include" />
         <e p="Functions.cs" t="Include" />
         <e p="MenuGUI.cs" t="Include" />
