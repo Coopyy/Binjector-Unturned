@@ -68,6 +68,7 @@
     <Compile Include="Overrides\OV_Player.cs" />
     <Compile Include="Overrides\OV_PlayerPauseUI.cs" />
     <Compile Include="Utilities\Configuration.cs" />
+    <Compile Include="Utilities\Debug.cs" />
     <Compile Include="Utilities\ESPUtil.cs" />
     <Compile Include="Cheats\Items.cs" />
     <Compile Include="Main.cs" />

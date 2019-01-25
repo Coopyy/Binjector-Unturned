@@ -7,7 +7,6 @@ using System.Reflection;
 using System.Text;
 using Binjector.Utilities;
 using UnityEngine;
-using Binjector.Other;
 using System.Collections;
 using Binjector.Overrides;
 using Binjector.Variables;

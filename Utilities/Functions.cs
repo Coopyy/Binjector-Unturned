@@ -1,5 +1,4 @@
 ﻿using Binjector.Cheats;
-using Binjector.Other;
 using SDG.Unturned;
 using Steamworks;
 using System;

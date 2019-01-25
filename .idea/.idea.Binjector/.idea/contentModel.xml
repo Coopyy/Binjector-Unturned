@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\archi\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_Binjector.-917721429.00" t="ExcludeRecursive" />
+    <e p="C:\Users\archi\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\archi\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_Binjector.-917721429.00" t="ExcludeRecursive" />
     <e p="D:\Libraries\Projects\Binjector" t="IncludeRecursive">
       <e p="bin" t="ExcludeRecursive" />
       <e p="Binjector.csproj" t="IncludeRecursive" />
@@ -40,6 +41,7 @@
       </e>
       <e p="Utilities" t="Include">
         <e p="Configuration.cs" t="Include" />
+        <e p="Debug.cs" t="Include" />
         <e p="ESPUtil.cs" t="Include" />
         <e p="Functions.cs" t="Include" />
         <e p="MenuGUI.cs" t="Include" />
