@@ -1,9 +1,9 @@
-﻿using Binjector.Cheats;
+﻿using System;
+using System.Reflection;
+using Binjector.Cheats;
+using Binjector.Variables;
 using SDG.Unturned;
 using Steamworks;
-using System;
-using System.Reflection;
-using Binjector.Variables;
 using UnityEngine;
 
 namespace Binjector.Utilities
@@ -125,6 +125,19 @@ namespace Binjector.Utilities
                 if (steamid == steamId || (Player.player.quests.isMemberOfSameGroupAs(GetPlayerFromSteamID(steamId).player))) return true;
             }
             return false;
+        }
+
+        public static bool playerIsInRange(string steamId, int range)
+        {
+            
+            if (GetDistFrom(steamId) <= range)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         //only if in your screen view
