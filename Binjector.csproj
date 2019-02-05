@@ -63,6 +63,7 @@
     <Compile Include="ESP\ZombieESP.cs" />
     <Compile Include="Overrides\OV_DamageTool.cs" />
     <Compile Include="Overrides\OV_LevelLighting.cs" />
+    <Compile Include="Overrides\OV_PlayerInteract.cs" />
     <Compile Include="Overrides\OV_Provider.cs" />
     <Compile Include="Overrides\OV_Player.cs" />
     <Compile Include="Overrides\OV_PlayerPauseUI.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Cheats\Weapons.cs" />
     <Compile Include="Utilities\OverrideManager.cs" />
     <Compile Include="Utilities\RedirectionHelper.cs" />
+    <Compile Include="Variables\ReflectionVariables.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,6 +4,7 @@ using SDG.Unturned;
 using Steamworks;
 using System;
 using System.Reflection;
+using Binjector.Variables;
 using UnityEngine;
 
 namespace Binjector.Utilities
@@ -138,10 +139,10 @@ namespace Binjector.Utilities
             return true;
         }
 
-        public static void OverrideMethod(Type defaultClass, Type overrideClass, string method, BindingFlags bindingflag, BindingFlags bindingflag1)
+        public static void OverrideMethod(Type defaultClass, Type overrideClass, string method, BindingFlags bindingflag)
         {
             string overriddenmethod = "OV_" + method;
-            RedirectionHelper.RedirectCalls(defaultClass.GetMethod(method, bindingflag | bindingflag1), overrideClass.GetMethod(overriddenmethod, BindingFlags.Static | BindingFlags.Public));
+            RedirectionHelper.RedirectCalls(defaultClass.GetMethod(method, bindingflag), overrideClass.GetMethod(overriddenmethod, ReflectionVariables.PrivateStatic));
         }
 
         public static Vector3 GetLimbPosition(Transform target, string objName)
@@ -294,7 +295,7 @@ namespace Binjector.Utilities
 
         public static void ChangeEngine(InteractableVehicle car, EEngine engine)
         {
-            car.asset.GetType().GetField("_engine", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).SetValue(car.asset, engine);
+            car.asset.GetType().GetField("_engine", ReflectionVariables.EverythingInstance).SetValue(car.asset, engine);
         }
     }
 }
