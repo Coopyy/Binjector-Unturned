@@ -39,7 +39,7 @@ namespace Binjector.Overrides
 
             if (MenuGUI.instance.silentAim && !hit.transform.CompareTag("Zombie"))
             {
-                if (Functions.GetDistFrom(Functions.GetNearestPlayer().transform.position, Player.player.look.aim.position) <= 15.5) 
+                if (Functions.playerInRange(Functions.GetNearestPlayer().transform.ToString(), 15.5)) 
                 {
                     raycastInfo.point = Player.player.transform.position;
                 }

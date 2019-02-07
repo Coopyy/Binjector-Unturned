@@ -127,7 +127,7 @@ namespace Binjector.Utilities
             return false;
         }
 
-        public static bool playerInRange(string csteamid, int range) 
+        public static bool playerInRange(string csteamid, double range) 
         {
             return GetDistFrom(GetPlayerFromSteamID(csteamid).player.transform.position,  Player.player.look.aim.position) <= range;
         }
