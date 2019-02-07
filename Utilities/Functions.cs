@@ -127,17 +127,9 @@ namespace Binjector.Utilities
             return false;
         }
 
-        public static bool playerIsInRange(string steamId, int range)
+        public static bool playerInRange(string csteamid, int range) 
         {
-            
-            if (GetDistFrom(steamId) <= range)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return GetDistFrom(GetPlayerFromSteamID(csteamid).player.transform.position,  Player.player.look.aim.position) <= range;
         }
 
         //only if in your screen view
