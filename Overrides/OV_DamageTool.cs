@@ -1,10 +1,7 @@
-﻿using Binjector.Utilities;
+﻿using System;
+using Binjector.Utilities;
 using SDG.Framework.Utilities;
 using SDG.Unturned;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace Binjector.Overrides
@@ -14,9 +11,14 @@ namespace Binjector.Overrides
         public static RaycastInfo OV_raycast(Ray ray, float range, int mask)
         {
             ItemWeaponAsset weapon = (ItemWeaponAsset)Player.player.equipment.asset;
+            ItemGunAsset gun = (ItemGunAsset) Player.player.equipment.asset;
             if (MenuGUI.instance.LongRangeMelee && weapon == null)
             {
                 range = MenuGUI.instance.MeleeRange;
+            }
+            else
+            {
+                range = gun.range;
             }
             RaycastHit hit;
             PhysicsUtility.raycast(ray, out hit, range, mask, 0);
@@ -37,7 +39,7 @@ namespace Binjector.Overrides
 
             if (MenuGUI.instance.silentAim && !hit.transform.CompareTag("Zombie"))
             {
-                if (Functions.GetDistFrom(Functions.GetNearestPlayer().transform.position, Player.player.look.aim.position) <= 15.5)
+                if (Functions.GetDistFrom(Functions.GetNearestPlayer().transform.position, Player.player.look.aim.position) <= 15.5) 
                 {
                     raycastInfo.point = Player.player.transform.position;
                 }
