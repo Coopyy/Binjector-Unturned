@@ -2,6 +2,7 @@
 using SDG.Framework.Modules;
 using UnityEngine.UI;*/
 using System;
+using System.CodeDom;
 using Binjector.Cheats;
 using Binjector.Utilities;
 using SDG.Framework.Modules;
@@ -16,12 +17,12 @@ namespace Binjector
 	{
         public GUIStyle stlye;
         public GameObject objectspawn1;
-		public GameObject manger;
+		public GameObject manager;
 	
 		void Start()
 		{
-			manger = GameObject.Find("Manager");
-			DontDestroyOnLoad(this.manger);
+			manager = GameObject.Find("Manager");
+			DontDestroyOnLoad(this.manager);
 
 			objectspawn1 = new GameObject("Testobject");
 			DontDestroyOnLoad(objectspawn1);
@@ -45,13 +46,17 @@ namespace Binjector
             objectspawn1.AddComponent<ESP.VehicleESP>();
             objectspawn1.AddComponent<ESP.GeneratorESP>();
             objectspawn1.AddComponent<ESP.ClaimflagESP>();
+            
+            
         }
+		
+		
 
 
         public void Selfdestroy()
         {
 			Destroy(objectspawn1);
-			Destroy(manger);
+			Destroy(manager);
 		}
     }
 }
