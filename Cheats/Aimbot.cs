@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Binjector.Variables;
 using UnityEngine;
 
 namespace Binjector.Cheats
@@ -74,8 +73,11 @@ namespace Binjector.Cheats
                             obj = p.gameObject;
                         }
                     }
+                }
             }
 
+            if (obj != null)
+            {
                 aim(obj);
             }
         }
@@ -95,8 +97,8 @@ namespace Binjector.Cheats
             {
                 num4 = Camera.main.transform.localRotation.eulerAngles.x - 270f;
             }
-            Player.player.look.GetType().GetField("_pitch", ReflectionVariables.PrivateInstance).SetValue(Player.player.look, num4);
-            Player.player.look.GetType().GetField("_yaw", ReflectionVariables.PrivateInstance).SetValue(Player.player.look, Player.player.transform.rotation.eulerAngles.y);
+            Player.player.look.GetType().GetField("_pitch", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Player.player.look, num4);
+            Player.player.look.GetType().GetField("_yaw", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Player.player.look, Player.player.transform.rotation.eulerAngles.y);
         }
     }
 }

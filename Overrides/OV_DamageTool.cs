@@ -1,7 +1,11 @@
-﻿using System;
+﻿using Binjector.Other;
 using Binjector.Utilities;
 using SDG.Framework.Utilities;
 using SDG.Unturned;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using UnityEngine;
 
 namespace Binjector.Overrides
@@ -11,22 +15,22 @@ namespace Binjector.Overrides
         public static RaycastInfo OV_raycast(Ray ray, float range, int mask)
         {
             ItemWeaponAsset weapon = (ItemWeaponAsset)Player.player.equipment.asset;
-            ItemGunAsset gun = (ItemGunAsset) Player.player.equipment.asset;
-            if (MenuGUI.instance.LongRangeMelee && weapon == null)
+            /*if (MenuGUI.instance.LongRangeMelee && weapon == null)
             {
                 range = MenuGUI.instance.MeleeRange;
-            }
-            else
-            {
-                range = gun.range;
-            }
+            }*/
+            range = Mathf.Infinity;
             RaycastHit hit;
             PhysicsUtility.raycast(ray, out hit, range, mask, 0);
             RaycastInfo raycastInfo = new RaycastInfo(hit);
-            if (hit.transform == null)
+            if (MenuGUI.instance.silentAim)
             {
-                return raycastInfo;
+                if (hit.transform == null && Functions.GetDistance(Functions.GetNearestPlayer().transform.position) >= Functions.GetGunDistance())
+                {
+                    return raycastInfo;
+                }
             }
+
             if (hit.transform.CompareTag("Zombie"))
             {
                 raycastInfo.zombie = DamageTool.getZombie(raycastInfo.transform);
@@ -39,7 +43,7 @@ namespace Binjector.Overrides
 
             if (MenuGUI.instance.silentAim && !hit.transform.CompareTag("Zombie"))
             {
-                if (Functions.playerInRange(Functions.GetNearestPlayer().transform.ToString(), 15.5)) 
+                if (Functions.GetDistFrom(Functions.GetNearestPlayer().transform.position, Player.player.look.aim.position) <= 15.5)
                 {
                     raycastInfo.point = Player.player.transform.position;
                 }

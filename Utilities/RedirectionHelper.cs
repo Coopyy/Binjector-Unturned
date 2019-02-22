@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-namespace Binjector.Utilities
+namespace Binjector.Other
 {
     public class RedirectionHelper
     {

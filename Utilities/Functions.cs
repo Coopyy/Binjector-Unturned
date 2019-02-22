@@ -1,9 +1,9 @@
-﻿using System;
-using System.Reflection;
-using Binjector.Cheats;
-using Binjector.Variables;
+﻿using Binjector.Cheats;
+using Binjector.Other;
 using SDG.Unturned;
 using Steamworks;
+using System;
+using System.Reflection;
 using UnityEngine;
 
 namespace Binjector.Utilities
@@ -64,6 +64,18 @@ namespace Binjector.Utilities
             vector.y = start.y - end.y;
             vector.z = start.z - end.z;
             return Math.Sqrt((vector.x * vector.x) + (vector.y * vector.y) + (vector.z * vector.z));
+        }
+
+        public static float GetGunDistance()
+        {
+            ItemGunAsset gun = (ItemGunAsset)Player.player.equipment.asset;
+            if (gun != null)
+            {
+                return gun.range;
+            } else
+            {
+                return -1;
+            }
         }
 
         public static Player GetNearestPlayer()
@@ -127,11 +139,6 @@ namespace Binjector.Utilities
             return false;
         }
 
-        public static bool playerInRange(string csteamid, double range) 
-        {
-            return GetDistFrom(GetPlayerFromSteamID(csteamid).player.transform.position,  Player.player.look.aim.position) <= range;
-        }
-
         //only if in your screen view
         public static bool IsVisable(Transform transform)
         {
@@ -143,10 +150,10 @@ namespace Binjector.Utilities
             return true;
         }
 
-        public static void OverrideMethod(Type defaultClass, Type overrideClass, string method, BindingFlags bindingflag)
+        public static void OverrideMethod(Type defaultClass, Type overrideClass, string method, BindingFlags bindingflag, BindingFlags bindingflag1)
         {
             string overriddenmethod = "OV_" + method;
-            RedirectionHelper.RedirectCalls(defaultClass.GetMethod(method, bindingflag), overrideClass.GetMethod(overriddenmethod, ReflectionVariables.PrivateStatic));
+            RedirectionHelper.RedirectCalls(defaultClass.GetMethod(method, bindingflag | bindingflag1), overrideClass.GetMethod(overriddenmethod, BindingFlags.Static | BindingFlags.Public));
         }
 
         public static Vector3 GetLimbPosition(Transform target, string objName)
@@ -280,7 +287,7 @@ namespace Binjector.Utilities
             GL.Begin(1);
             ESPUtil.DrawingMaterial.SetPass(0);
             GL.Color(color);
-            GL.Vertex3(Screen.width / 2, Screen.height / 2, 0f);
+            GL.Vertex3(Screen.width / 2, Screen.height - Screen.height, 0f);
             GL.Vertex3(pos.x, pos.y, 0f);
             GL.End();
             GL.PopMatrix();
@@ -299,7 +306,7 @@ namespace Binjector.Utilities
 
         public static void ChangeEngine(InteractableVehicle car, EEngine engine)
         {
-            car.asset.GetType().GetField("_engine", ReflectionVariables.EverythingInstance).SetValue(car.asset, engine);
+            car.asset.GetType().GetField("_engine", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).SetValue(car.asset, engine);
         }
     }
 }
