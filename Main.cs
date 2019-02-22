@@ -18,7 +18,7 @@ namespace Binjector
 				UnityEngine.Object.DontDestroyOnLoad(Main.LoadObj);
 				LoadObj.AddComponent<Manager>();
 				Debug.Log("Binjector successfully loaded");
-				Debug.Log(Version + "by Coopy");
+				Debug.Log(Version + "- By: Coopyy");
 			}
 			catch (Exception error)
 			{
